@@ -4,6 +4,8 @@ import kr.revfactory.example.domain.post.Post;
 import kr.revfactory.example.domain.post.repository.PostRepository;
 import kr.revfactory.example.domain.post.repository.PostWithGraphRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -39,5 +41,13 @@ public class PostService {
 
     public List<Post> getPostsByUserWithGraph(Long userId) {
         return postWithGraphRepository.findAllByUserId(userId);
+    }
+
+    public Page<Post> getPostsWithGraph(Pageable pageable) {
+        return postWithGraphRepository.findAll(pageable);
+    }
+
+    public Page<Post> getPostsByUserWithGraph(Long userId, Pageable pageable) {
+        return postWithGraphRepository.findAllByUserId(userId, pageable);
     }
 }

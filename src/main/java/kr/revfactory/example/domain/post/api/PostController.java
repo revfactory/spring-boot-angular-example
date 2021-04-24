@@ -4,6 +4,8 @@ import kr.revfactory.example.domain.post.Post;
 import kr.revfactory.example.domain.post.dto.PostResponse;
 import kr.revfactory.example.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,5 +46,13 @@ public class PostController {
         return PostResponse.build(Optional.ofNullable(userId)
                 .map(postService::getPostsByUserWithGraph)
                 .orElseGet(postService::getPostsWithGraph));
+    }
+
+    @GetMapping("/v5/posts")
+    public Page<PostResponse> getPostsWithGraph(@RequestParam(value = "userId", required = false) Long userId, Pageable pageable) {
+        return Optional.ofNullable(userId)
+                .map(id -> postService.getPostsByUserWithGraph(id, pageable))
+                .orElseGet(() -> postService.getPostsWithGraph(pageable))
+                .map(PostResponse::build);
     }
 }
