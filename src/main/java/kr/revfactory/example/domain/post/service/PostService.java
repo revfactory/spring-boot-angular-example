@@ -16,4 +16,12 @@ public class PostService {
     public List<Post> getPostsByUser(Long userId) {
         return postRepository.findAllByUserId(userId);
     }
+
+    public List<Post> getPostsByUserWithGraph(Long userId) {
+        return postRepository.findAllByUserIdWithGraph(userId);
+    }
+
+    public List<Post> getPosts() {
+        return postRepository.findAll();
+    }
 }

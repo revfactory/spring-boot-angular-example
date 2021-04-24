@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @EntityGraph(attributePaths = {"comments", "comments.user", "user"}, type = EntityGraph.EntityGraphType.LOAD)
+    List<Post> findAll();
+
     List<Post> findAllByUserId(Long userId);
 
+    @EntityGraph(attributePaths = {"comments"}, type = EntityGraph.EntityGraphType.LOAD)
+    List<Post> findAllByUserIdWithGraph(Long userId);
 }
