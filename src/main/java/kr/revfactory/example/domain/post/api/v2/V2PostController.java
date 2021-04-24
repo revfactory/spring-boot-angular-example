@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,10 +20,8 @@ public class V2PostController {
 
     @GetMapping
     public List<PostResponse> getPosts(@RequestParam(value = "userId", required = false) Long userId) {
-        return Optional.ofNullable(userId)
+        return PostResponse.build(Optional.ofNullable(userId)
                 .map(postService::getPostsByUser)
-                .orElseGet(postService::getPosts)
-                .stream().map(PostResponse::build)
-                .collect(Collectors.toList());
+                .orElseGet(postService::getPosts));
     }
 }

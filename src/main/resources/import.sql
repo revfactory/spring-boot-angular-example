@@ -10,7 +10,6 @@ insert into post(id, subject, user_id) values(2, '게시글1-2', 1);
 insert into post(id, subject, user_id) values(3, '게시글1-3', 1);
 insert into post(id, subject, user_id) values(4, '게시글2', 2);
 insert into post(id, subject, user_id) values(5, '게시글2-1', 2);
-insert into post(id, subject, user_id) values(6, '게시글3', 3);
 
 insert into comment(id, reply, post_id, user_id) values(1, '댓글1', 1, 2);
 insert into comment(id, reply, post_id, user_id) values(2, '댓글2', 1, 3);

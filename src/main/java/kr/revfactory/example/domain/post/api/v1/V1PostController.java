@@ -1,7 +1,6 @@
 package kr.revfactory.example.domain.post.api.v1;
 
 import kr.revfactory.example.domain.post.Post;
-import kr.revfactory.example.domain.post.dto.PostResponse;
 import kr.revfactory.example.domain.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor

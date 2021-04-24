@@ -22,6 +22,6 @@ public class V3PostController {
     public List<Post> getPosts(@RequestParam(value = "userId", required = false) Long userId) {
         return Optional.ofNullable(userId)
                 .map(postService::getPostsByUserWithGraph)
-                .orElseGet(postService::getPosts);
+                .orElseGet(postService::getPostsWithGraph);
     }
 }
