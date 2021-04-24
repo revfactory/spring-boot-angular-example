@@ -6,7 +6,9 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Entity
@@ -17,12 +19,13 @@ public class Post {
 
     private String subject;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private final List<Comment> comments = new ArrayList<>();
+    //private final List<Comment> comments = new ArrayList<>();
+    private final Set<Comment> comments = new LinkedHashSet<>();
 
-    @ManyToOne
-    //@ManyToOne(fetch = FetchType.LAZY)
+    //@ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
 }
