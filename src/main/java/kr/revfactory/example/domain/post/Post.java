@@ -21,7 +21,8 @@ public class Post {
     @JsonManagedReference
     private final List<Comment> comments = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    //@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
 }
