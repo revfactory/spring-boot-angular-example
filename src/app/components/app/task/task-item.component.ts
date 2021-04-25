@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
-import { Task } from "../../models/task";
+import { Task } from "../../../models/task";
 import { TaskEditModeService } from "./task-edit-mode.service";
-import { TaskApiService } from "../../services/task-api.service";
+import { TaskApiService } from "../../../services/task-api.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
