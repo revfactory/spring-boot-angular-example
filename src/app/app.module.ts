@@ -1,39 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { RouterModule, Routes } from '@angular/router';
-import { TaskComponent } from "./components/app/task/task.component";
-import { AppComponent } from "./components/app/app.component"
-import { TaskCreateComponent } from "./components/app/task/task-create.component";
+import { AppComponent } from "./app.component"
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
-import { TaskItemComponent } from "./components/app/task/task-item.component";
-import { TaskEditModeService } from "./components/app/task/task-edit-mode.service";
-
-const appRoutes: Routes = [
-    {path: 'list', component: TaskComponent},
-    {path: '', component: TaskComponent},
-    {path: '*', component: TaskComponent},
-];
+import { TaskEditModeService } from "./routes/task/service/task-edit-mode.service";
+import { LayoutModule } from "./layout/layout.module";
+import { SharedModule } from "./shared/shared.module";
+import { RoutesModule } from "./routes/routes.module";
 
 @NgModule({
     declarations: [
-        TaskComponent,
-        TaskItemComponent,
-        TaskCreateComponent,
         AppComponent
     ],
     imports: [
+        LayoutModule,
+        RoutesModule,
+        SharedModule,
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
-        RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' })
+        HttpClientModule
     ],
     providers: [
-        {provide: LocationStrategy, useClass: HashLocationStrategy},
-        TaskEditModeService
     ],
     bootstrap: [AppComponent]
 })
